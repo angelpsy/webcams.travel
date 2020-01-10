@@ -1,0 +1,4 @@
+argon-dashboard
+node_modules
+.nuxt
+dist

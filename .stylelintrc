@@ -1,0 +1,21 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-rational-order"
+    ],
+    "plugins": [
+        "stylelint-scss"
+    ],
+    "rules": {
+        "indentation": 4,
+        "color-hex-case": "lower",
+        "no-missing-end-of-source-newline": true,
+        "declaration-block-trailing-semicolon": "always",
+        "declaration-empty-line-before": null,
+        "custom-property-empty-line-before": null,
+        "comment-empty-line-before": null,
+        "block-no-empty": null,
+        "at-rule-no-unknown": null,
+        "string-quotes": "double"
+    }
+}

@@ -21,3 +21,7 @@ node_modules/
 # temp files
 *~
 /_tmp.*
+
+# env local files
+.env.local
+.env.*.local

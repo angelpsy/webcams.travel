@@ -1,9 +1,23 @@
 {
-  "name": "webcams.travel",
-  "version": "0.0.1",
-  "description": "copy webcams.travel with the description of places",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "AAlekseev"
+    "name": "webcams.travel",
+    "version": "0.0.1",
+    "description": "copy webcams.travel with the description of places",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start:server": "nodemon server/index.js"
+    },
+    "author": "AAlekseev",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.0.3",
+        "dotenv-flow": "^3.1.0",
+        "eslint": "^6.8.0",
+        "eslint-friendly-formatter": "^4.0.1",
+        "nodemon": "^2.0.2",
+        "stylelint": "^12.0.1",
+        "stylelint-config-rational-order": "^0.1.2",
+        "stylelint-config-standard": "^19.0.0"
+    }
 }
