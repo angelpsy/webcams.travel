@@ -1,0 +1,9 @@
+{
+  "name": "webcams.travel",
+  "version": "0.0.1",
+  "description": "copy webcams.travel with the description of places",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AAlekseev"
+}
