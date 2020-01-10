@@ -1,0 +1,16 @@
+# for local development
+version: '3.7'
+services:
+    server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: 'develop-stage'
+        ports:
+            - '${API_SERVER_PORT}:${API_SERVER_PORT}'
+        volumes:
+            - '.:/app'
+            - '/app/node_modules/'
+        command: ["npm", "run", "start:server"]
+        environment:
+            - CHOKIDAR_USEPOLLING=true
