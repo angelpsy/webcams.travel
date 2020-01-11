@@ -6,9 +6,13 @@ module.exports = {
         es6: true,
     },
     parserOptions: {
-        parser: "babel-eslint"
+        parser: "babel-eslint",
+        sourceType: "module",
     },
-    extends: [],
+    extends: [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     plugins: [],
     // add your custom rules here
     rules: {
@@ -16,5 +20,6 @@ module.exports = {
         "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
         "max-len": ["error", {"code": 120}],
         "quotes": ["error", "double"],
+        "eol-last": ["error", "always"],
     }
 };

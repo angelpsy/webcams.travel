@@ -4,20 +4,39 @@
     "description": "copy webcams.travel with the description of places",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start:server": "nodemon server/index.js"
+        "start:api": "nodemon api/index.js",
+        "start:web": "webpack-dev-server --mode development --hot",
+        "start": "npm run start:api & npm run start:web",
+        "build:web": "webpack --mode production"
     },
     "author": "AAlekseev",
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0"
     },
     "devDependencies": {
+        "@babel/preset-env": "^7.7.7",
+        "@babel/preset-react": "^7.7.4",
+        "@hot-loader/react-dom": "^16.11.0",
         "babel-eslint": "^10.0.3",
+        "babel-loader": "^8.0.6",
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^3.4.2",
         "dotenv-flow": "^3.1.0",
         "eslint": "^6.8.0",
         "eslint-friendly-formatter": "^4.0.1",
+        "eslint-plugin-react": "^7.17.0",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.9.0",
         "nodemon": "^2.0.2",
+        "react-hot-loader": "^4.12.18",
+        "style-loader": "^1.1.2",
         "stylelint": "^12.0.1",
         "stylelint-config-rational-order": "^0.1.2",
-        "stylelint-config-standard": "^19.0.0"
+        "stylelint-config-standard": "^19.0.0",
+        "webpack": "^4.41.5",
+        "webpack-cli": "^3.3.10",
+        "webpack-dev-server": "^3.10.1"
     }
 }

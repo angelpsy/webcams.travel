@@ -11,6 +11,6 @@ services:
         volumes:
             - '.:/app'
             - '/app/node_modules/'
-        command: ["npm", "run", "start:server"]
+        command: ["npm", "run", "start:api"]
         environment:
             - CHOKIDAR_USEPOLLING=true
