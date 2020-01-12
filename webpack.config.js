@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
             filename: IS_PROD ? "[name].[contenthash].js" : "[name].js",
         },
         resolve: {
-            extensions: [".js", ".jsx"],
+            extensions: [".js", ".ts", ".jsx", ".tsx"],
             alias: {
                 "react-dom": "@hot-loader/react-dom",
                 "@": "./src",
@@ -38,6 +38,18 @@ module.exports = (env, argv) => {
                     }
                 },
                 {
+                    test: /\.ts(x?)$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: "ts-loader"
+                    }
+                },
+                {
+                    enforce: "pre",
+                    test: /\.js$/,
+                    loader: "source-map-loader"
+                },
+                {
                     test: /\.css$/,
                     use: IS_PROD ?
                         [MiniCssExtractPlugin.loader, "css-loader"] :
@@ -45,6 +57,10 @@ module.exports = (env, argv) => {
                 },
             ]
         },
+        // externals: {
+        //     "react": "React",
+        //     "react-dom": "ReactDom"
+        // },
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
