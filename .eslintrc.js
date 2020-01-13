@@ -5,15 +5,21 @@ module.exports = {
         node: true,
         es6: true,
     },
-    parserOptions: {
-        parser: "babel-eslint",
-        sourceType: "module",
-    },
     extends: [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
-    plugins: [],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        project: "tsconfig.json",
+        tsconfigRootDir: "."
+    },
+    plugins: [
+        "@typescript-eslint"
+    ],
     // add your custom rules here
     rules: {
         "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
