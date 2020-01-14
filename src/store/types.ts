@@ -1,10 +1,12 @@
-import {State as RootState} from "./reducers";
+import {AppState} from "./reducers";
+import {RouterState} from "connected-react-router";
 
 /**
  * Общий State
  */
 export interface State {
-    root: RootState;
+    app: AppState;
+    router: RouterState;
 }
 
 export enum Status {

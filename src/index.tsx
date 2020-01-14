@@ -1,23 +1,18 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
-import {createStore, applyMiddleware} from "redux";
-import {composeWithDevTools} from "redux-devtools-extension/logOnlyInProduction"
 import {Provider} from "react-redux";
-import thunk from "redux-thunk";
+import {ConnectedRouter} from "connected-react-router";
 
-import reducer from "./store/reducers";
+import configureStore, {history} from "./store/configureStore";
+
 import App from "./app";
 
-const composeEnhancers = composeWithDevTools({});
-
-const middleware = [ thunk ];
-const store = createStore(
-    reducer,
-    composeEnhancers(applyMiddleware(...middleware)),
-);
+const store = configureStore();
 
 ReactDom.render(
     <Provider store={store}>
-        <App />
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
     </Provider>
     , document.getElementById("root"));

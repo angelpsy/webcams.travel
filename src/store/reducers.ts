@@ -1,31 +1,35 @@
 import {combineReducers, Reducer} from "redux";
+import { connectRouter} from "connected-react-router";
+import { History } from "history";
 import {Status} from "./types";
-import {CHANGE_STATUS, ActionChangeStatus} from "./action";
+import {CHANGE_STATUS, ChangeStatusAction} from "./action";
+import {State} from "./types";
 
-export interface State {
+export interface AppState {
     status: Status;
 }
 
-const defaultStateRoot = {
+const appDefaultState = {
     status: Status.NULL,
 };
 
-type RootAction = ActionChangeStatus;
+type AppAction = ChangeStatusAction;
 
-const root: Reducer<State, RootAction> = (state = defaultStateRoot, action) => {
+const app: Reducer<AppState, AppAction> = (state = appDefaultState, action) => {
     switch (action.type) {
         case CHANGE_STATUS:
             return {
                 ...state,
-                status: action.payload
+                state: action.payload
             };
         default:
             return state;
     }
 };
 
-const reducer = combineReducers({
-    root,
+const createRootReducer = ({history}: {history: History}): Reducer<State> => combineReducers({
+    router: connectRouter(history),
+    app,
 });
 
-export default reducer;
+export default createRootReducer;
