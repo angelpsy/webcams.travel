@@ -10,10 +10,16 @@ import {
 } from "react-router-dom";
 import {initActionCreator} from "./store/action";
 import {State, Status} from "./store/types";
-import HomePage from "./containers/home";
-import AboutPage from "./containers/about";
+// import HomePage from "./containers/home";
+// import AboutPage from "./containers/about";
 
 import "./index.css";
+
+const {lazy, Suspense} = React;
+const HomePage = lazy(() =>
+    import(/* webpackChunkName: "home-page" */"./containers/home"));
+const AboutPage = lazy(() =>
+    import(/* webpackChunkName: "about-page" */"./containers/about"));
 
 interface StateProps {
     status: Status;
@@ -47,14 +53,16 @@ class App extends React.Component<Props, null> {
                         </li>
                     </ul>
                 </nav>
-                <Switch>
-                    <Route path="/about">
-                        <AboutPage />
-                    </Route>
-                    <Route path="/">
-                        <HomePage />
-                    </Route>
-                </Switch>
+                <Suspense fallback={<div>Загрузка...</div>}>
+                    <Switch>
+                        <Route path="/about">
+                            <AboutPage />
+                        </Route>
+                        <Route path="/">
+                            <HomePage />
+                        </Route>
+                    </Switch>
+                </Suspense>
             </div>
         );
     }

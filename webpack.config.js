@@ -8,18 +8,18 @@ const Paths = {
     DIST: path.join(__dirname, "/dist")
 };
 
-
-
 module.exports = (env, argv) => {
     const IS_PROD = argv.mode === "production";
     return {
-        entry: [
-            "react-hot-loader/patch",
-            "./src",
-        ],
+        mode: argv.mode,
+        entry: {
+            main: "./src/index.tsx",
+        },
         output: {
             path: Paths.DIST,
             filename: IS_PROD ? "[name].[contenthash].js" : "[name].js",
+            chunkFilename: IS_PROD ? "[name].[contenthash].js" : "[name].js",
+            publicPath: "/",
         },
         resolve: {
             extensions: [".js", ".ts", ".jsx", ".tsx"],
@@ -57,10 +57,6 @@ module.exports = (env, argv) => {
                 },
             ]
         },
-        // externals: {
-        //     "react": "React",
-        //     "react-dom": "ReactDom"
-        // },
         plugins: [
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
