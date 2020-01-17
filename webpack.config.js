@@ -70,6 +70,7 @@ module.exports = (env, argv) => {
             hot: true,
             host: "0.0.0.0",
             port: process.env.WEB_DEV_SERVER_PORT,
+            historyApiFallback: true,
         }
     }
 };
