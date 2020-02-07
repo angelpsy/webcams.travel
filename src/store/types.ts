@@ -1,13 +1,17 @@
 import {AppState} from "./reducers";
 import {RouterState} from "connected-react-router";
+import {State as MapState} from "./modules/map/types";
 
 /**
  * Общий State
  */
-export interface State {
+export interface RootState {
     app: AppState;
     router: RouterState;
+    map: MapState;
 }
+
+export type GetRootState = () => RootState;
 
 export enum Status {
     /**

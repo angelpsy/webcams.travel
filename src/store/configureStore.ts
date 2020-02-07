@@ -4,7 +4,7 @@ import {routerMiddleware} from "connected-react-router";
 import createRootReducer from "./reducers";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension/logOnlyInProduction";
-import {State} from "./types";
+import {RootState} from "./types";
 
 import {TypeHistory} from "../types/app-config";
 
@@ -16,7 +16,7 @@ export const history = TYPE_HISTORY === TypeHistory.HASH ? createHashHistory() :
 const composeEnhancers = composeWithDevTools({});
 const middleware = [ routerMiddleware(history), thunk ];
 
-export default function configureStore(preloadedState?: State): Store<State> {
+export default function configureStore(preloadedState?: RootState): Store<RootState> {
     return createStore(
         createRootReducer({history}),
         preloadedState,

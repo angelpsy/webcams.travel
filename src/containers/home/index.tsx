@@ -1,11 +1,10 @@
 import * as React from "react";
-
-import "./index.css";
+import HomeView from "../../views/home";
 
 class HomePage extends React.Component {
     render() {
         return (
-            <div className={"p-home"}>Home page container</div>
+            <HomeView />
         );
     }
 }

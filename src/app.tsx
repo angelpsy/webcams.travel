@@ -6,20 +6,13 @@ import { hot } from "react-hot-loader/root";
 import {
     Switch,
     Route,
-    Link
 } from "react-router-dom";
-import {initActionCreator} from "./store/action";
-import {State, Status} from "./store/types";
-// import HomePage from "./containers/home";
-// import AboutPage from "./containers/about";
-
-import "./index.css";
+import {initActionCreator} from "./store/actions";
+import {RootState, Status} from "./store/types";
 
 const {lazy, Suspense} = React;
 const HomePage = lazy(() =>
     import(/* webpackChunkName: "home-page" */"./containers/home"));
-const AboutPage = lazy(() =>
-    import(/* webpackChunkName: "about-page" */"./containers/about"));
 
 interface StateProps {
     status: Status;
@@ -39,25 +32,9 @@ class App extends React.Component<Props, null> {
 
     render() {
         return (
-            <div>
-                <h1>My react Apps</h1>
-                <div>Status: {this.props.status}</div>
-                <div>Location: {this.props.location.pathname}</div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                    </ul>
-                </nav>
+            <div className={"app"}>
                 <Suspense fallback={<div>Загрузка...</div>}>
                     <Switch>
-                        <Route path="/about">
-                            <AboutPage />
-                        </Route>
                         <Route path="/">
                             <HomePage />
                         </Route>
@@ -68,7 +45,7 @@ class App extends React.Component<Props, null> {
     }
 }
 
-const mapStateToProps = (state: State): StateProps => {
+const mapStateToProps = (state: RootState): StateProps => {
     return {
        status: state.app.status,
        location: state.router.location,

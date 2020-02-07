@@ -3,10 +3,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 const Paths = {
     DIST: path.join(__dirname, "/dist")
 };
+
+const APP_ENV = Object.keys(process.env).filter(key => key.startsWith("APP_"))
+    .reduce((obj, key) => ({...obj, [`process.env.${key}`]: JSON.stringify(process.env[key])}), {});
 
 module.exports = (env, argv) => {
     const IS_PROD = argv.mode === "production";
@@ -64,6 +68,9 @@ module.exports = (env, argv) => {
             }),
             new MiniCssExtractPlugin({
                 filename: "[name].[contenthash].css"
+            }),
+            new webpack.DefinePlugin({
+                ...APP_ENV,
             }),
         ],
         devServer: {

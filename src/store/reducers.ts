@@ -2,8 +2,9 @@ import {combineReducers, Reducer} from "redux";
 import { connectRouter} from "connected-react-router";
 import { History } from "history";
 import {Status} from "./types";
-import {CHANGE_STATUS, ChangeStatusAction} from "./action";
-import {State} from "./types";
+import {CHANGE_STATUS, ChangeStatusAction} from "./actions";
+import {RootState} from "./types";
+import map from "./modules/map/reducers";
 
 export interface AppState {
     status: Status;
@@ -13,9 +14,9 @@ const appDefaultState = {
     status: Status.NULL,
 };
 
-type AppAction = ChangeStatusAction;
+type AppActions = ChangeStatusAction;
 
-const app: Reducer<AppState, AppAction> = (state = appDefaultState, action) => {
+const app: Reducer<AppState, AppActions> = (state = appDefaultState, action) => {
     switch (action.type) {
         case CHANGE_STATUS:
             return {
@@ -27,9 +28,10 @@ const app: Reducer<AppState, AppAction> = (state = appDefaultState, action) => {
     }
 };
 
-const createRootReducer = ({history}: {history: History}): Reducer<State> => combineReducers({
+const createRootReducer = ({history}: {history: History}): Reducer<RootState> => combineReducers({
     router: connectRouter(history),
     app,
+    map,
 });
 
 export default createRootReducer;

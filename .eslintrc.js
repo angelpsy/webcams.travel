@@ -27,5 +27,6 @@ module.exports = {
         "max-len": ["error", {"code": 120}],
         "quotes": ["error", "double"],
         "eol-last": ["error", "always"],
+        "@typescript-eslint/ban-ts-ignore": "off"
     }
 };
