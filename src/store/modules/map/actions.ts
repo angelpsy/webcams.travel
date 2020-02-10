@@ -9,19 +9,19 @@ export const MAP_CHANGE_COORDINATES = "MAP_CHANGE_COORDINATES";
 export const MAP_CHANGE_ZOOM = "MAP_CHANGE_ZOOM";
 
 
-interface ChangeCoordinatesAction extends Action {
+interface ChangeCoordinatesAction extends Action<typeof MAP_CHANGE_COORDINATES> {
     payload: {
         coordinates: Coordinates;
     };
 }
 
-interface ChangeZoomAction extends Action {
+interface ChangeZoomAction extends Action<typeof MAP_CHANGE_ZOOM> {
     payload: {
         zoom: Zoom;
     };
 }
 
-export type Actions = ChangeCoordinatesAction & ChangeZoomAction;
+export type Actions = ChangeCoordinatesAction | ChangeZoomAction;
 
 export const changeCoordinatesActionCreator:
     ActionCreator<ThunkAction<any, RootState, any, ChangeCoordinatesAction>>
