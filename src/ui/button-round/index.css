@@ -1,0 +1,5 @@
+.ui-button-round {
+    width: var(--control-size);
+    height: var(--control-size);
+    border-radius: 50%;
+}

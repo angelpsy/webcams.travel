@@ -1,0 +1,27 @@
+:root {
+    --app-base-height: 100%;
+
+    --bg-color--base: #fff;
+
+    --shadow--zero: 0 0 0 rgba(0, 0, 0, 0);
+
+    --shadow--to-left:
+        -1px 0 1px rgba(0, 0, 0, 0.12),
+        -2px 0 2px rgba(0, 0, 0, 0.12),
+        -4px 0 4px rgba(0, 0, 0, 0.12),
+        -8px 0 8px rgba(0, 0, 0, 0.12),
+        -16px 0 16px rgba(0, 0, 0, 0.12);
+
+    --shadow--to-right:
+        1px 0 1px rgba(0, 0, 0, 0.12),
+        2px 0 2px rgba(0, 0, 0, 0.12),
+        4px 0 4px rgba(0, 0, 0, 0.12),
+        8px 0 8px rgba(0, 0, 0, 0.12),
+        16px 0 16px rgba(0, 0, 0, 0.12);
+
+    --transition-duration--base: 0.3s;
+
+    --control-size: 40px;
+
+    --control-size--height: var(--control-size);
+}

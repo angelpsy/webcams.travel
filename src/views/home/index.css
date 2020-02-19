@@ -1,7 +1,62 @@
 .p-home {
+    position: relative;
     height: 100%;
 }
 
 .p-home__map {
+    position: relative;
     height: 100%;
+}
+
+.p-home__col-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 200px;
+    min-width: 25%;
+    height: 100%;
+    background-color: var(--bg-color--base);
+    box-shadow: var(--shadow--to-right);
+    transition: transform var(--transition-duration--base);
+
+    @nest & .p-home__action {
+        left: 100%;
+        border-left: none;
+        border-radius: 0 0 50% 0;
+        transition: transform var(--transition-duration--base);
+    }
+
+    @nest & .p-home__action---to-close {
+        border: none;
+        transform: translate(-100%);
+    }
+
+    @nest & .p-home__action-icon {
+        left: 1px;
+    }
+
+    @nest & .p-home__action-icon---to-close {
+        left: -1px;
+        transform: rotate(180deg);
+    }
+}
+
+.p-home__col-left--closed {
+    box-shadow: var(--shadow--zero);
+    transform: translateX(-100%);
+}
+
+.p-home__action {
+    position: absolute;
+    top: -1px;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-home__action-icon {
+    position: relative;
+    max-width: 75%;
 }
