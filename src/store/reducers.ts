@@ -5,6 +5,7 @@ import {Status} from "./types";
 import {CHANGE_STATUS, ChangeStatusAction} from "./actions";
 import {RootState} from "./types";
 import map from "./modules/map/reducers";
+import webCams from "./modules/web-cams/reducers";
 
 export interface AppState {
     status: Status;
@@ -32,6 +33,7 @@ const createRootReducer = ({history}: {history: History}): Reducer<RootState> =>
     router: connectRouter(history),
     app,
     map,
+    webCams,
 });
 
 export default createRootReducer;

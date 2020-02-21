@@ -1,11 +1,11 @@
 import * as React from "react";
-// @ts-ignore
 import cx from "classnames";
-import GoogleMapReact from "google-map-react";
+import GoogleMapReact, {Maps} from "google-map-react";
 import { Coordinates, GoogleMapChangeRequest } from "../../types/map";
 
 interface State {
     isInitGoogleMap: boolean;
+    isInitDataMap: boolean;
 }
 
 type StateProps = {
@@ -17,6 +17,7 @@ type StateProps = {
 interface DispatchProps {
     init?: () => void;
     onChange: (props: GoogleMapChangeRequest) => void;
+    onSetDataMap: (props: GoogleMapChangeRequest) => void;
 }
 
 type Props = StateProps & DispatchProps;
@@ -26,18 +27,29 @@ const KEY_GOOGLE_MAPS = process.env.APP_KEY_GOOGLE_MAPS;
 class BMap extends React.Component<Props, State> {
     readonly state = {
         isInitGoogleMap: false,
+        isInitDataMap: false, // once set data for map
     };
 
     onChange = (props: GoogleMapChangeRequest): void => {
         // hook: disable handler of change when map is loading (first loading of map)
         // reason: https://github.com/google-map-react/google-map-react/blob/master/DOC.md#simple-example
-        if (!this.state.isInitGoogleMap) return;
+        if (!this.state.isInitGoogleMap) {
+            if (!this.state.isInitDataMap) {
+                this.props.onSetDataMap(props);
+                this.setState({
+                    isInitDataMap: true,
+                });
+            }
+            return;
+        }
         this.props.onChange(props);
     };
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleApiLoaded = (): void => {
         this.setState({
             isInitGoogleMap: true,
-        })
+        });
     };
     render() {
         const { className } = this.props;

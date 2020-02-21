@@ -1,5 +1,6 @@
 import * as React from "react";
 import Map from "../../container-components/map";
+import WebCams from "../../container-components/web-cams";
 import cx from "classnames";
 
 import BaseButtonRound from "../../ui/button-round";
@@ -48,7 +49,7 @@ class HomeView extends React.Component<{}, State> {
                             "p-home__action-icon---to-close": isOpenColLeft
                         })}/>
                     </BaseButtonRound>
-                    TODO: Webcams
+                    <WebCams className={"p-home__web-cams"}/>
                 </aside>
                 <Map className={"p-home__map"}/>
             </div>

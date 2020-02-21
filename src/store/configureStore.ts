@@ -5,6 +5,7 @@ import createRootReducer from "./reducers";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension/logOnlyInProduction";
 import {RootState} from "./types";
+import {middlewareFetchWebCamsAfterChangeBounds} from "./modules/web-cams/middleware";
 
 import {TypeHistory} from "../types/app-config";
 
@@ -14,7 +15,11 @@ export const history = TYPE_HISTORY === TypeHistory.HASH ? createHashHistory() :
     createBrowserHistory();
 
 const composeEnhancers = composeWithDevTools({});
-const middleware = [ routerMiddleware(history), thunk ];
+const middleware = [
+    routerMiddleware(history),
+    thunk,
+    middlewareFetchWebCamsAfterChangeBounds,
+];
 
 export default function configureStore(preloadedState?: RootState): Store<RootState> {
     return createStore(

@@ -11,6 +11,7 @@
     },
     "author": "AAlekseev",
     "dependencies": {
+        "axios": "^0.19.2",
         "classnames": "^2.2.6",
         "connected-react-router": "^6.6.1",
         "express": "^4.17.1",

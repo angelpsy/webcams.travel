@@ -1,12 +1,13 @@
 import {ActionCreator, Action, Dispatch } from "redux";
 import {ThunkAction} from "redux-thunk";
-import {Coordinates, Zoom} from "./types";
+import {Coordinates, Zoom, Bounds} from "./types";
 import {GetRootState, RootState} from "../../types";
 import {getLocation, replace} from "connected-react-router";
 import {getCoordinates, getZoom} from "./selectors";
 
 export const MAP_CHANGE_COORDINATES = "MAP_CHANGE_COORDINATES";
 export const MAP_CHANGE_ZOOM = "MAP_CHANGE_ZOOM";
+export const MAP_CHANGE_BOUNDS = "MAP_CHANGE_BOUNDS";
 
 
 interface ChangeCoordinatesAction extends Action<typeof MAP_CHANGE_COORDINATES> {
@@ -21,7 +22,13 @@ interface ChangeZoomAction extends Action<typeof MAP_CHANGE_ZOOM> {
     };
 }
 
-export type Actions = ChangeCoordinatesAction | ChangeZoomAction;
+interface ChangeBoundsAction extends Action<typeof MAP_CHANGE_BOUNDS> {
+    payload: {
+        bounds: Bounds;
+    };
+}
+
+export type Actions = ChangeCoordinatesAction | ChangeZoomAction | ChangeBoundsAction;
 
 export const changeCoordinatesActionCreator:
     ActionCreator<ThunkAction<any, RootState, any, ChangeCoordinatesAction>>
@@ -59,6 +66,13 @@ export const changeZoomActionCreator:
         },
     });
 };
+
+export const boundsActionActionCreator: ActionCreator<ChangeBoundsAction> = (bounds: Bounds) => ({
+    type: MAP_CHANGE_BOUNDS,
+    payload: {
+        bounds,
+    }
+});
 
 export const initActionCreator:
     ActionCreator<ThunkAction<any, RootState, void, Actions>>

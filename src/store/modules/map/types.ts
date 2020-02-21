@@ -1,4 +1,4 @@
-import {Coordinates, Zoom} from "../../../types/map";
+import {Coordinates, Zoom, Bounds} from "../../../types/map";
 
 /**
  * State of map
@@ -6,6 +6,7 @@ import {Coordinates, Zoom} from "../../../types/map";
 export interface State {
     zoom: Zoom;
     coordinates: Coordinates;
+    bounds: Bounds | null;
 }
 
-export {Coordinates, Zoom};
+export {Coordinates, Zoom, Bounds};

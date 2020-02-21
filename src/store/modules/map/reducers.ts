@@ -1,5 +1,5 @@
 import {Reducer} from "redux";
-import {Actions, MAP_CHANGE_COORDINATES, MAP_CHANGE_ZOOM} from "./actions";
+import {Actions, MAP_CHANGE_COORDINATES, MAP_CHANGE_ZOOM, MAP_CHANGE_BOUNDS} from "./actions";
 import {State} from "./types";
 
 const mapDefaultState: State = {
@@ -8,6 +8,7 @@ const mapDefaultState: State = {
         lat: 51.505,
         lng: -0.09,
     },
+    bounds: null,
 };
 
 const mapReducer: Reducer<State, Actions> = (state = mapDefaultState, action) => {
@@ -21,6 +22,11 @@ const mapReducer: Reducer<State, Actions> = (state = mapDefaultState, action) =>
             return {
                 ...state,
                 zoom: action.payload.zoom,
+            };
+        case MAP_CHANGE_BOUNDS:
+            return  {
+                ...state,
+                bounds: action.payload.bounds,
             };
         default:
             return state;

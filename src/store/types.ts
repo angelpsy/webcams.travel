@@ -1,6 +1,7 @@
 import {AppState} from "./reducers";
 import {RouterState} from "connected-react-router";
 import {State as MapState} from "./modules/map/types";
+import {State as WebCamsState} from "./modules/web-cams/types";
 
 /**
  * Общий State
@@ -9,6 +10,7 @@ export interface RootState {
     app: AppState;
     router: RouterState;
     map: MapState;
+    webCams: WebCamsState;
 }
 
 export type GetRootState = () => RootState;
